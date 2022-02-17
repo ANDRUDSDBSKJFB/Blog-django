@@ -1,0 +1,32 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+{% if comments %}
+           Delete Post
+               {% else %}
+               Delete Comment
+               {% endif %}
+{% endblock %}
+
+{% block headers %}
+       <div class="features">
+               {% if comments %}
+           <h1>Delete Post</h1>
+               {% else %}
+               <h1>Delete Comment</h1>
+               {% endif %}
+           <p></p>
+           <form  method="post">
+               {% csrf_token %}
+               {% if comments %}
+               <button class="btn btn-success" type="submit"> Delete Post
+               </button>
+               {% endif %}
+               {% if comment %}
+               <button class="btn btn-success" type="submit"> Delete Comment
+               </button>
+               {% endif %}
+           </form>
+       </div>
+
+{% endblock %}

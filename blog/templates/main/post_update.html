@@ -1,0 +1,17 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+Post update
+{% endblock %}
+
+{% block headers %}
+{% if update %}
+<div class="features ">
+    <form method="post" class="col-4 position-absolute top-0 start-50 translate-middle-x mt-5 ">
+           {% csrf_token %}
+               <div class="form-control bg-dark text-white">{{ form }}
+               <input class="btn btn-danger mt-2" type="submit" value="Edit"></div>
+</form>
+    </div>
+{% endif %}
+{% endblock %}

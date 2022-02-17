@@ -1,0 +1,7 @@
+Django~=4.0.2
+djangorestframework~=3.13.1
+selenium~=4.1.0
+gunicorn
+witenoise
+dj-database-url
+psycopg2==2.8.6

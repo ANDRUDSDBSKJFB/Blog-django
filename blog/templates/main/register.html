@@ -1,0 +1,15 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+Registration
+{% endblock %}
+
+{% block headers %}
+<div class="features">
+    <form action="{% url 'registration'  %}" method="post" class="col-4 text-white position-absolute top-0 start-50 translate-middle-x">
+            {% csrf_token %}
+            {{ form }}
+    <button  class="btn btn-danger mt-5" type="submit" name="button-reg" >Registration</button>
+    </form>
+    </div>
+{% endblock %}

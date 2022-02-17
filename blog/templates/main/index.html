@@ -1,0 +1,25 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+Blog
+{% endblock %}
+
+{% block headers %}
+       <div class="features">
+           <h1>Blog</h1>
+           {% if profile %}
+           {% for el in profile %}
+           <div class="alert alert-warning">
+               <a href="{% url 'post-detail' el.id %}"><h3>{{el.title|truncatechars:25}}</h3></a>
+               <p>{{el.body|truncatechars:100}}</p>
+                <p class="align">{{el.created}}</p>
+               <p class="owner fs-5">{{el.owner}}</p>
+           </div>
+           {% endfor %}
+           {% else %}
+           <p>y vac net zapisi</p>
+           {% endif %}
+
+           {# Comment #}
+       </div>
+{% endblock %}

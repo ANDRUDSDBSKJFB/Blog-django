@@ -1,0 +1,44 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+Posts details
+{% endblock %}
+
+{% block headers %}
+       <div class="features">
+           <h1>{{ profile.title }}</h1>
+           <p class="text-break">{{ profile.body }}</p>
+           <p class="align">{{ profile.created }}</p>
+           <p class="owner">{{ profile.owner }}</p>
+            {% with comments.count as total_comments %}
+    <h2>
+          {{ total_comments }} Comment{{ total_comments|pluralize }}
+    </h2>
+{% endwith %}
+           {% for comment in comments %}
+               <div class="alert alert-warning">
+        <p class="text-break">{{ comment.body|linebreaks }}</p>
+<form method="post">
+    <p class="info">
+            {{ comment.created }}
+            </p>
+    {% if request.user == comment.owner %}
+      <a href="{% url 'comment-delete' comment.id %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+    <p class="name text-break">
+             Comment by {{ comment.owner }}
+        </p>
+</form>
+</div>
+{% empty %}
+    <p>There are no comments yet.</p>
+{% endfor %}
+           {% if request.user.is_authenticated %}
+              <form id="add_form" class="text-white" method="post">
+         {% csrf_token %}
+                  <p class="col-6">{{ form }}</p>
+          </form>
+           <button form="add_form" type="submit" class="btn btn-primary" >Add</button>
+       </div>
+{% endif %}
+{% endblock %}

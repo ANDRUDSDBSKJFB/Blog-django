@@ -1,0 +1,16 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+Authorization
+{% endblock %}
+
+{% block headers %}
+<div class="features">
+    <form action="{% url 'auth'  %}" method="post" class="col-4  position-absolute top-0 start-50 translate-middle-x mt-5">
+            <p >Authorization</p>
+            {% csrf_token %}
+            <p >{{ form }}</p>
+    <button  class="btn btn-danger mt-5" type="submit" name="login">Authorization</button>
+    </form>
+    </div>
+{% endblock %}

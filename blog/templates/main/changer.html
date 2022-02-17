@@ -1,0 +1,44 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+Edit menu
+{% endblock %}
+
+{% block headers %}
+       <div class="features">
+           <h1>Edit menu</h1>
+           {% include "main/model.html" %}
+           <table class="bg-white text-dark table caption-top mt-4">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Created</th>
+      <th scope="col">Body</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% if profile %}
+           {% for el in profile %}
+   {% if request.user == el.owner %}
+    <tr>
+      <th scope="col" >{{el.id}}</th>
+      <th scope="col" class="text-break">{{el.title|title}}</th>
+      <th scope="col">{{el.created}}</th>
+      <th scope="col">{{el.body|truncatechars:15}}</th>
+      <th scope="col"><a href="{% url 'post-update' el.id %}" class="btn btn-info">Edit</a></th>
+      <th scope="col"><a href="{% url 'post-delete' el.id %}" class="btn btn-danger">Delete</a></th>
+    </tr>
+   {% endif %}
+  {% endfor %}
+           {% else %}
+           <p>y vac net zapisi</p>
+           {% endif %}
+  </tbody>
+</table>
+           {# Comment #}
+
+</div>
+{% endblock %}
